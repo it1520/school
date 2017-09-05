@@ -1,2 +1,2 @@
 # school
-Školní projekty
+Školní projekty - František Lukeš
