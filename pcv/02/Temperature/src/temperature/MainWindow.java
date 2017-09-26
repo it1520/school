@@ -5,6 +5,8 @@
  */
 package temperature;
 
+import java.awt.Color;
+import static javafx.scene.paint.Color.color;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,7 +33,14 @@ public class MainWindow extends javax.swing.JFrame {
 
         btnClose = new javax.swing.JButton();
         btnAbout = new javax.swing.JButton();
-        jSlider1 = new javax.swing.JSlider();
+        slider = new javax.swing.JSlider();
+        Panel = new javax.swing.JPanel();
+        inputF = new javax.swing.JTextField();
+        inputC = new javax.swing.JTextField();
+        inputK = new javax.swing.JTextField();
+        c = new javax.swing.JLabel();
+        F = new javax.swing.JLabel();
+        K = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,39 +58,122 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        jSlider1.setMajorTickSpacing(10);
-        jSlider1.setMaximum(50);
-        jSlider1.setMinimum(-50);
-        jSlider1.setMinorTickSpacing(1);
-        jSlider1.setPaintLabels(true);
-        jSlider1.setPaintTicks(true);
-        jSlider1.setToolTipText("");
-        jSlider1.setValue(0);
+        slider.setMajorTickSpacing(10);
+        slider.setMaximum(50);
+        slider.setMinimum(-50);
+        slider.setMinorTickSpacing(1);
+        slider.setPaintLabels(true);
+        slider.setPaintTicks(true);
+        slider.setToolTipText("");
+        slider.setValue(0);
+        slider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sliderStateChanged(evt);
+            }
+        });
+
+        Panel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
+        Panel.setLayout(PanelLayout);
+        PanelLayout.setHorizontalGroup(
+            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 378, Short.MAX_VALUE)
+        );
+        PanelLayout.setVerticalGroup(
+            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 55, Short.MAX_VALUE)
+        );
+
+        inputF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputFActionPerformed(evt);
+            }
+        });
+
+        inputC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                inputCMouseReleased(evt);
+            }
+        });
+        inputC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                inputCKeyReleased(evt);
+            }
+        });
+
+        c.setText("°C");
+
+        F.setText("°F");
+
+        K.setText("°K");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(slider, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(125, 125, 125))
             .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnClose)
-                        .addGap(40, 40, 40)
-                        .addComponent(btnAbout)))
-                .addContainerGap(96, Short.MAX_VALUE))
+                        .addGap(121, 121, 121)
+                        .addComponent(btnClose))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(inputC, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(99, 99, 99)
+                        .addComponent(inputF, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAbout)
+                        .addContainerGap(148, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(inputK, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(89, 89, 89)
+                .addComponent(c, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(151, 151, 151)
+                .addComponent(F)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(K)
+                .addGap(96, 96, 96))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(slider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inputC, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputF, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputK, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(c, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(F)
+                    .addComponent(K))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnClose)
                     .addComponent(btnAbout))
-                .addGap(55, 55, 55))
+                .addGap(53, 53, 53))
         );
 
         pack();
@@ -96,6 +188,44 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "Autor programu: František Lukeš");
     }//GEN-LAST:event_btnAboutActionPerformed
+
+    private void inputFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputFActionPerformed
+
+    private void sliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderStateChanged
+        inputC.setText(String.valueOf(slider.getValue()));
+        int celsius = slider.getValue();
+        inputF.setText(String.valueOf(celsius*9/5+32));
+        inputK.setText(String.valueOf(celsius+273));
+        int color = celsius+50;
+        if(color>50){
+            color = color-50;
+                    int r = 255 - (int)(color * (float)255/50);
+                    Panel.setBackground (new Color (255, r, r));
+        }
+        else{
+            int b = (int) (color * (float) 255/50);
+            Panel.setBackground( new Color(b, 255, 255));
+        }
+    }//GEN-LAST:event_sliderStateChanged
+
+    private void inputCMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputCMouseReleased
+
+    }//GEN-LAST:event_inputCMouseReleased
+
+    private void PanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMouseClicked
+        slider.setValue(slider.getValue() + 1);
+    }//GEN-LAST:event_PanelMouseClicked
+
+    private void inputCKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputCKeyReleased
+        String typed = inputC.getText();
+        slider.setValue(0);
+        if(!typed.matches("\\d+") && !typed.matches("-\\d+") || typed.length() > 3){
+            return;
+        }
+        slider.setValue(Integer.parseInt(typed));
+    }//GEN-LAST:event_inputCKeyReleased
 
     /**
      * @param args the command line arguments
@@ -133,8 +263,15 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel F;
+    private javax.swing.JLabel K;
+    private javax.swing.JPanel Panel;
     private javax.swing.JButton btnAbout;
     private javax.swing.JButton btnClose;
-    private javax.swing.JSlider jSlider1;
+    private javax.swing.JLabel c;
+    private javax.swing.JTextField inputC;
+    private javax.swing.JTextField inputF;
+    private javax.swing.JTextField inputK;
+    private javax.swing.JSlider slider;
     // End of variables declaration//GEN-END:variables
 }
