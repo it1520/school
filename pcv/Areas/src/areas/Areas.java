@@ -67,9 +67,9 @@ public class Areas {
                             System.out.printf("Plocha obdélníku o stranách %.2f a %.2f je %.3f\n", b, c, this.getRectangleArea(b, c));
                             break;
                     case T: System.out.println("Trojúhelník");
-                            float d = this.readNumbers("Zadej těžnici");
+                            float d = this.readNumbers("Zadej stranu");
                             float e = this.readNumbers("Zadej výšku");
-                            System.out.printf("Plocha trojůjelníku o těžnici %.2f a  výšce %.2f je %.3f\n", d, e, 0.5*(d*e));
+                            System.out.printf("Plocha trojúhelníku o straně %.2f a  výšce %.2f je %.3f\n", d, e, 0.5*(d*e));
                             break;
                     case C: System.out.println("Kruh");
                             float r = this.readNumbers("Zadej poloměr");
