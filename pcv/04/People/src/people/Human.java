@@ -5,6 +5,8 @@
  */
 package people;
 
+import java.awt.Color;
+
 /**
  *
  * @author student
@@ -14,7 +16,7 @@ package people;
 public class Human {
     //Vlastní výčtový typ
     public enum Sex {
-       MAN, WOMAN, ATTACK_HELICOPTER 
+       MAN, WOMAN
     }
     //Atributy třídy
     private String name;
@@ -22,6 +24,8 @@ public class Human {
     private int weight = 70;
     private float height = (float) 1.80;
     private Sex sex = Sex.MAN;
+    //modifikátor protected zabraňuje veřejnému přistupu k atributu, ale ten je přístupný pro všechny potomky třídy Human
+    protected Color eyes = Color.BLUE;
     
     /* Metody třídy Human */
 
@@ -83,13 +87,14 @@ public class Human {
         return Math.round(this.weight / Math.pow(this.height, 2)*100.0)/100.0;
     }
     
+    @Override
     public String toString(){
-        String output =  "My name is " + this.name + "\n";
-        output += "I am " + this.getSex() + "\n";
-        output += "My height is " + this.getHeight() + " meters\n";
-        output += "My weight is " + this.getWeight() + " kilograms\n";
+        String output =  this.name + " [Human]";
+        /*output += "I am " + this.getSex() + "\n";
+        output += "My height is " + this.getHeight() + " m\n";
+        output += "My weight is " + this.getWeight() + " kg\n";
         output += "My age is " + this.getAge() + "\n";
-        output += "My BMI is " + this.getBMI() + "\n";
+        output += "My BMI is " + this.getBMI() + "\n"; */
         return output;
     }
 }
